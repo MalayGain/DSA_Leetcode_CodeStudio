@@ -1,0 +1,26 @@
+int dp[200][200];
+    
+    
+    int minPath(vector<vector<int>>& grid,int i,int j)
+    {
+        
+        if(i==grid.size()-1 && j==grid[0].size()-1)
+        {
+            return grid[i][j];
+        }
+        
+        if(i>=grid.size() || j>=grid[0].size())return INT_MAX;
+        
+        
+        if(dp[i][j]!=-1)return dp[i][j];
+        
+        return  dp[i][j]=grid[i][j]+min(minPath(grid,i+1,j),minPath(grid,i,j+1));
+    }
+    
+    int minPathSum(vector<vector<int>>& grid) {
+        
+        
+        memset(dp,-1,sizeof(dp));
+        
+        return minPath(grid,0,0);
+    }
